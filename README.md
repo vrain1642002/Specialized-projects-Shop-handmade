@@ -1,4 +1,4 @@
-# specialized-projects
+# THLTWeb
 Đồ án chuyên ngành webiste bán đồ handmade 
 Tổng quan project:
 +Phần back end :Rest API được viết bằng java spring boot được đặt trong thực mục con backend
