@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="container">
+    <form #loginForm="ngForm">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="login-form mx-auto">
+                <h2 class="login-header">Đăng nhập</h2>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input (keyup.enter)="login()" type="text" class="form-control" 
+                    [(ngModel)]="SDT"  required
+                    (focus)="loginForm.form.markAsTouched"
+                    name="SDT" id="SDT">
+                    <div class="divider-nospace"></div>
+                    <!-- kiem tra khi da cham vao form -->
+                    <p  class="text-danger" 
+                    *ngIf="!isPhoneNumberValid() && loginForm.form.touched">Số điện thoại phải là 10 số </p>
+                </div>
+                <div class="mt-5"></div>
+                <div class="form-group password-field">
+                    <label for="password">Mật khẩu</label>
+                    <input (keyup.enter)="login()" type="{{ showPassword ? 'text' : 'password' }}"
+                    [(ngModel)]="Matkhau"  required 
+                    placeholder="Nhập mật khẩu" 
+                    (focus)="loginForm.form.markAsTouched"
+                        class="form-control" id="password" name="Matkhau">
+                        
+                        <i class="password-toggle fas" [ngClass]="showPassword ? 
+                        'fa-eye' : 'fa-eye-slash'" (click)="togglePassword()">
+                        </i>
+                    <div class="divider-nospace"></div>
+                    <p  class="text-danger" 
+                    *ngIf="!isPasswordValid() && loginForm.form.touched">Phải dài hơn 7 kí tự,bao gồm chữ thường,hoa,số và kí tự đặc biệt </p>
+                </div>
+                <div class="form-group">
+                    <div class="form-check checkbox-text">
+                        <span style="display: flex;">
+                            <input type="checkbox" class="form-check-input" 
+                            [(ngModel)]="rememberMe"
+                            id="remember"
+                            name="remember">
+                            <label class="form-check-label text-start" for="remember">
+                                Ghi nhớ đăng nhập</label>
+                        </span>
+                        <a  class="register-link">Quên mật khẩu</a>
+                    </div>
+                </div>
+               
+                  <button type="button"
+                  (click)="login()"
+                  class="login-button">Đăng nhập</button>
+                  <div class="divider"></div>
+                  <p class="text-center">Bạn chưa đăng ký? <span>
+                    <a routerLink="/register" class="register-link">Tạo tài khoản</a></span></p>
+        </div>
+    </div>   
+   
+    </div>
+    </form>
+</div>
+<app-footer></app-footer>

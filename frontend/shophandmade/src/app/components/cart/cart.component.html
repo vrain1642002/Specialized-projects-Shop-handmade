@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="container">
+    <div class="confirmation-container">
+        <h1>Giỏ hàng</h1>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-start">Sản phẩm</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of cartItems; let i = index">
+                <tr >
+                  <td>
+                    <div class="product-info">
+                      <img [src]="item.sanpham.hinhthunho" alt="Product Image" class="product-image" (click)="onProductClick(item.sanpham.ma)">
+                      <span class="product-name">{{item.sanpham.ten}}</span>
+                      <br>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-quantity">
+                      <button (click)="decreaseQuantity(i,item.sanpham.ma)">-</button>
+                      <input  type="text" (keyup.enter)="onEnterKey(i,item.quantity,item.sanpham.ma)" [(ngModel)]="item.quantity"  [value]="item.quantity" >
+                      <button (click)="increaseQuantity(i)">+</button>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="price">{{item.sanpham.gia | currency:'VND':'symbol':'1.0-0'}}</p>
+                  </td>
+                  <td>
+                    <p class="price">{{item.sanpham.gia * item.quantity | currency:'VND':'symbol':'1.0-0'}}</p>
+                  </td>
+                </tr>
+                </ng-container>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" class="text-end">Tổng tiền:</td>
+                  <td>
+                    <p class="price1">{{ totalAmount | currency:'VND':'symbol':'1.0-0' }}</p>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        <div class="text-center mt-3 btn-group">
+            <button class="btn succed continued" type="button" routerLink="/products">Tiếp tục mua sắm</button>
+            <button class="btn primary order" type="button" routerLink="/order">Đặt hàng</button>
+            <button class="btn primary clear" type="button" (click)="clear()">Xóa giỏ hàng</button>
+        </div>
+
+    </div>
+</div>
