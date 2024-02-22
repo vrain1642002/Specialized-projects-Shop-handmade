@@ -12,11 +12,12 @@ Tổng quan project:
 Có thể truy cập trực tiếp đường link dưới để sử dụng,reponse tương thích trên cả mobile và pc.
 https://frontendshop-production.up.railway.app/.
 
-TK KH:0866715111 && kK123456@
+Tài khoản KH:0866715111 && kK123456@
 
-TK ADMIN:0866715211 && vV123456@
+Tài khoản ADMIN:0866715211 && vV123456@
+
 Về phía khách hàng bao cồm các chức năng như đăng kí,đăng nhập,xem danh sách,chi tiết sản phẩm.Tìm kiếm sản phẩm theo tên,theo danh mục.Có các chức năng khác như giỏ hàng,đặt hàng,sản phẩm yêu thích,tra cứu đơn hàng,cập nhật thông tin.
-Về phia Admin thì sẽ có chức năng crud sản phẩm,danh mục,cập nhật trạng thái đơn hàng
+Về phia Admin thì sẽ có chức năng crud sản phẩm,danh mục,cập nhật trạng thái đơn hàng(Các chức năng phía admin đang chỉnh sửa,hoàn thiện)
 
 Hướng dẫn cài dặt:Trước đó đã cài đặt các phần mềm như Mysql, SQL Server Management Studio,intel jda or eclise,visul studio
 +Download,clone repository về.
