@@ -6,9 +6,10 @@ Tổng quan project:
 +File DB trong mysql, SQL Server Management Studio,db mặc định xài là my sql,vì sử dụng java spring data nên khi cấu trúc xong sẽ sinh ra db từ back end.
 +Có các file db chứa dữ liệu được export từ my sql đặt trong thư mục Dump20231219
 +Bao gồm các file khác như lược đồ,báo cáo
++Dùng railway để deploy,sẽ deploy db my sql rồi deploy REST API java spring boot rồi cuối cùng là front-end là angular để người dùng sử dụng.
 
-Hướng dẫn sử dụng:
-Có thể truy cập trực tiếp đường link dưới để sử dụng,reponse tương thích trên cả mobile và pc.(Dùng railway để deploy,sẽ deploy db my sql rồi deploy REST API java spring boot rồi cuối cùng là front-end là angular để người dùng sử dụng.
+*Hướng dẫn sử dụng:
+Có thể truy cập trực tiếp đường link dưới để sử dụng,reponse tương thích trên cả mobile và pc.
 https://frontendshop-production.up.railway.app/
 TK KH:0866715111 && kK123456@
 TK AD:0866715211 && vV123456@
