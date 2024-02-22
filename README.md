@@ -10,9 +10,11 @@ Tổng quan project:
 
 *Hướng dẫn sử dụng:
 Có thể truy cập trực tiếp đường link dưới để sử dụng,reponse tương thích trên cả mobile và pc.
-https://frontendshop-production.up.railway.app/
+https://frontendshop-production.up.railway.app/.
+
 TK KH:0866715111 && kK123456@
-TK AD:0866715211 && vV123456@
+
+TK ADMIN:0866715211 && vV123456@
 Về phía khách hàng bao cồm các chức năng như đăng kí,đăng nhập,xem danh sách,chi tiết sản phẩm.Tìm kiếm sản phẩm theo tên,theo danh mục.Có các chức năng khác như giỏ hàng,đặt hàng,sản phẩm yêu thích,tra cứu đơn hàng,cập nhật thông tin.
 Về phia Admin thì sẽ có chức năng crud sản phẩm,danh mục,cập nhật trạng thái đơn hàng
 
