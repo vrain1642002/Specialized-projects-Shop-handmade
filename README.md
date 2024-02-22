@@ -10,8 +10,8 @@ Tổng quan project:
 Hướng dẫn sử dụng:
 Có thể truy cập trực tiếp đường link dưới để sử dụng,reponse tương thích trên cả mobile và pc.(Dùng railway để deploy,sẽ deploy db my sql rồi deploy REST API java spring boot rồi cuối cùng là front-end là angular để người dùng sử dụng.
 https://frontendshop-production.up.railway.app/
-TK KH:
-TK AD:0866715211 && vV12356@
+TK KH:0866715111 && kK123456@
+TK AD:0866715211 && vV123456@
 Về phía khách hàng bao cồm các chức năng như đăng kí,đăng nhập,xem danh sách,chi tiết sản phẩm.Tìm kiếm sản phẩm theo tên,theo danh mục.Có các chức năng khác như giỏ hàng,đặt hàng,sản phẩm yêu thích,tra cứu đơn hàng,cập nhật thông tin.
 Về phia Admin thì sẽ có chức năng crud sản phẩm,danh mục,cập nhật trạng thái đơn hàng
 
