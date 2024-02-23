@@ -177,7 +177,7 @@ export class UpdateProductAdminComponent implements OnInit {
       this.productService.deleteProductImage(productImage.ma).subscribe({
         next:(productImage:Sanphamhinh) => {
        
-          history.go(0);        
+         this.getProductDetails();       
         },        
         error: (error) => {
           // Handle the error while uploading images
