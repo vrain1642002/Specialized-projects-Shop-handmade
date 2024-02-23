@@ -1,10 +1,17 @@
 #Shop handmade
+
 Đồ án chuyên ngành webiste bán đồ handmade 
+
 Tổng quan project:
+
 +Phần back end :Rest API được viết bằng java spring boot được đặt trong thư mục con backend
+
 +Phần front end:Angular tạo giao diện và nhận API từ back end và xử lý hiển thị cho người dùng đặt trong thư mục con frontend
+
 +File DB trong mysql, SQL Server Management Studio,db mặc định xài là my sql,vì sử dụng java spring data nên khi cấu trúc xong sẽ sinh ra db từ back end.
+
 +Có các file db chứa dữ liệu được export từ my sql đặt trong thư mục Dump20231219
+
 +Bao gồm các file khác như lược đồ,báo cáo.
 
 #Hướng dẫn sử dụng:
