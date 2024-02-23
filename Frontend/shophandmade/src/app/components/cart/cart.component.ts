@@ -59,7 +59,10 @@ export class CartComponent implements OnInit {
   }
   clear():void{
     this.cartService.clearCart();
-    window.location.reload();
+    
+      this.router.navigate(['/']);
+
+
   }
   onProductClick(Ma: number) {
     this.router.navigate(['products', Ma]);

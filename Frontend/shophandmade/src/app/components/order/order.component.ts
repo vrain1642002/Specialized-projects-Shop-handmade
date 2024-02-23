@@ -176,10 +176,7 @@ export class OrderComponent implements OnInit {
       (total,item)=> total + item.sanpham.gia * item.quantity,0
     )
   }
-  clear():void{
-    this.cartService.clearCart();
-    window.location.reload();
-  }
+
   onProductClick(Ma: number) {
     this.router.navigate(['products', Ma]);
   }

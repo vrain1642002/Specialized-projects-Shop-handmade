@@ -58,7 +58,8 @@ export class LoveComponent {
 
   clear():void{
     this.loveService.clearLove();
-    window.location.reload();
+    this.router.navigate(['/']);
+
   }
   onProductClick(Ma: number) {
     this.router.navigate(['products', Ma]);
@@ -81,6 +82,6 @@ export class LoveComponent {
   clearone(Ma:number)
   {
       this.loveService.clearone(Ma);
-      window.location.reload();
+      this.ngOnInit();
   }
 }
