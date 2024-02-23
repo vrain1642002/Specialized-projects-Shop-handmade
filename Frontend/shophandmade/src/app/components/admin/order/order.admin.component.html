@@ -1,0 +1,90 @@
+
+<div class="container-fluid">
+    <h1>Quản lý đơn hàng</h1>
+    <!--Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải  -->
+    <div class="row mb-3">
+      <div class="col-md-8">
+        <input type="text" 
+          class="form-control search-input" placeholder="Tìm đơn hàng" 
+          [(ngModel)]="keyword">
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary" (click)="searchOrders()">Tìm kiếm theo tên,SDT</button>
+      </div>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Mã đơn hàng</th>
+            <th>Mã người dùng</th>
+            <th>Họ tên người nhận</th>
+            <th>SDT người nhận</th>
+            <th>Địa chỉ nhận hàng</th>
+            <th>Ghi chú</th>
+            <th>Ngày đặt hàng</th>
+            <th>Trạng thái</th>
+            <th>Tổng tiền</th>
+            
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>              
+              {{ order.ma }}</td>
+            <td>{{ order.manguoidung }}</td>
+            <td>{{ order.hoten_Nguoinhan }}</td>
+            <td>{{ order.sdtnguoinhan }}</td>
+            <td>{{ order.diachinhanhang}}</td>
+            <td>{{ order.ghichu }}</td>
+            <td>{{ order.ngaydathang | date }}</td>
+            <td>{{ order.trangthaidh }}</td>
+            <td>{{ order.tongtien }}</td>
+           
+            <td>
+              <div style="display: flex; gap: 10px;">
+              <button 
+                (click)="viewDetails(order)"
+                    class="btn btn-primary">
+                    Xem chi tiết
+              </button>
+              <button class="btn btn-danger" 
+                (click)="deleteOrder(order.ma)"
+                >Xóa</button>                
+              </div>
+            </td>                        
+          </tr>
+        </tbody>
+      </table>
+    <div class="d-flex justify-content-center">
+       
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+              <!-- //chuyen ve page dau -->
+              <li class="page-item" *ngIf="currentPage > 0">
+                  <a class="page-link"  (click)="onPageChange(0)">First</a>
+              </li>
+              <!-- page truoc -->
+              <li class="page-item" *ngIf="currentPage > 0">
+                  <a class="page-link"  (click)="onPageChange(currentPage - 1)">Previous</a>
+              </li>
+              <!-- page hien tai -->
+              <ng-container *ngFor="let page of visiblePages">
+                  <li class="page-item" [ngClass]="{'active':page===currentPage}">
+                      <a class="page-link"  (click)="onPageChange(page)">{{page + 1}}</a>
+                  </li>
+              </ng-container>
+              <!-- --page ke -->
+              <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                  <a class="page-link"  (click)="onPageChange(currentPage + 1)">Next</a>
+              </li>
+              <!-- //page cuoi -->
+              <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                  <a class="page-link"  (click)="onPageChange(totalPages - 1)">Last</a>
+              </li>
+          </ul>
+      </nav>
+    </div>
+</div>
+
+      

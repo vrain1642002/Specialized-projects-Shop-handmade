@@ -1,0 +1,116 @@
+.container {
+    color: black;
+
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.login-form {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 50px;
+    max-width: 500px;
+    border: 1px solid skyblue;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-header {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: white;
+    border: 1px solid skyblue;
+    color: black;
+}
+
+.form-control:focus {
+    color: black;
+    background-color: transparent;
+    outline: none;
+    border-color: transparent;
+}
+
+.divider-nospace {
+    border-top: 1px solid white;
+}
+
+
+
+
+.checkbox-text {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Màu checkbox khi được chọn */
+.checkbox-text input[type="checkbox"]:checked {
+    border-color: white;
+    background-color: blue;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.register-link {
+    color: blue;
+    text-decoration: none;
+}
+
+
+.access-right:focus {
+    border: 1px solid rgb(225, 64, 180);
+}
+
+
+.login-button {
+    background: blue;
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 20px;
+    border: none;
+    font-size: 24px;
+    font-family: Georgia;
+}
+
+.divider {
+    height: 1px;
+    background-color: rgb(243, 165, 42);
+    /* background-color: rgb(105, 244, 181) */
+    margin: 20px;
+}
+
+.password-field {
+    position: relative;
+
+
+}
+
+// .password-toggle {
+//     margin-top: 14px;
+//     position: absolute;
+//     right: 10px;
+//     cursor: pointer;
+//     color: #007BFF;
+//     /* Màu xanh, bạn có thể thay đổi màu sắc nếu cần */
+// }
+.password-toggle {
+    position: absolute;
+    top: 60%;
+    right: 10px;
+    transform: translateY(-60%);
+    color: #007BFF;
+    cursor: pointer;
+}

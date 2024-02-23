@@ -1,0 +1,61 @@
+<div class="container">
+
+  
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Thông tin đơn hàng</h3>
+      <p><strong>Mã đơn hàng:</strong> {{ orderResponse.ma}}</p>
+      <p><strong>Mã người dùng:</strong> {{ orderResponse.manguoidung }}</p>
+      <p><strong>Họ tên:</strong> {{ orderResponse.hoten_Nguoinhan }}</p>
+      <p><strong>SDT:</strong> {{ orderResponse.sdtnguoinhan }}</p>
+      
+      <p><strong>Địa chỉ:</strong> {{ orderResponse.diachinhanhang }}</p>
+      <p><strong>Ghi chú:</strong> {{ orderResponse.ghichu }}</p>
+      <p><strong>Ngày đặt hàng:</strong> {{ orderResponse.ngaydathang| date }}</p>
+      
+      <div class="form-group">
+        <label for="statusSelect"><strong>Cập nhật trạng thái đơn hàng: {{ orderResponse.trangthaidh }}</strong></label>
+        
+        <select class="form-control" id="statusSelect" 
+          [(ngModel)]="orderResponse.trangthaidh">
+          <option value="Đang xử lý">Đang xử lý</option>
+          <option value="Đang chuẩn bị">Đang chuẩn bị</option>
+          <option value="Đang vận chuyển">Đang vận chuyển</option>
+          <option value="Đang giao hàng">Đang giao hàng</option>
+          <option value="Giao hàng thành công">Giao hàng thành công</option>
+          <option value="Đơn hàng đã hủy">Đơn hàng đã hủy</option>
+        </select>
+      </div>          
+  </div>  
+  <h3>Chi tiết đơn hàng</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+        <!--<th>Total</th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order_detail of orderResponse.chitietdonhangs; 
+        let i = index">
+        <td>{{ order_detail.sanpham.ten }}</td>
+        <td>
+          <p>{{order_detail.sanpham.gia}}</p>          
+        <td>
+          <p>{{order_detail.soluong}}</p>          
+        </td>
+        <td>
+          <p>{{order_detail.soluong*order_detail.sanpham.gia}}</p>          
+        </td>
+        <!--<td>{{ order_detail.total_money }}</td>-->
+      </tr>
+    </tbody>
+  </table>  
+  <p><strong>Tổng tiền:</strong> {{ orderResponse.tongtien| currency:'VND':'symbol':'1.0-0'}}</p>
+
+  <button class="btn btn-primary col-md-2" 
+    (click)="saveOrder()">Lưu</button>
+</div>

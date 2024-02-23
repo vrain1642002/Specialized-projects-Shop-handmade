@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div class="container">
+    <div class="intro-section">
+        <h1>Chi tiết đơn hàng</h1>
+        <p>Xem thông tin chi tiết đơn hàng</p>
+    </div>
+    
+    <!-- Thông tin người nhận -->
+    <div *ngIf="orderResponse" class="row">
+        <div class="col-md-6">
+            <h2 class="product-header">Thông tin người nhận</h2>
+            <div class="mb-3">
+                <p class="form-label">Họ và tên: {{ orderResponse.hoten_Nguoinhan }}</p>
+            </div>
+            <!-- Các trường thông tin khác -->
+           
+            <div class="mb-3">
+                <p class="form-label">Số điện thoại: {{ orderResponse.sdtnguoinhan }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Địa chỉ: {{ orderResponse.diachinhanhang}}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Ghi chú: {{ orderResponse.ghichu }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Phương thức vận chuyển: {{ orderResponse.phuongthucvanchuyen }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Phương thức thanh toán: {{ orderResponse.phuongthucthanhtoan }}</p>
+            </div>   
+            <div class="mb-3">
+                <p class="form-label">Ngày đặt hàng: {{ orderResponse.ngaydathang | date:'dd/MM/yyyy' }}</p>
+
+            </div> 
+            <div class="mb-3">
+                <p class="TT">Mã đơn hàng: {{ orderResponse.ma}}</p>
+             </div> 
+            <div class="mb-3">
+               <p class="TT">Trạng thái đơn hàng: {{ orderResponse.trangthaidh}}</p>
+            </div> 
+            <div class="mb-3">
+                <button class="btn primary order" type="button" routerLink="/find">Quay về trang tra cứu</button>
+
+             </div>       
+                                     
+        </div>
+
+        <!-- Sản phẩm đã đặt hàng -->
+        <div class="col-md-12">
+            <h2 class="product-order">Sản phẩm đã đặt hàng</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-start">Sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Tổng giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr *ngFor="let item of orderResponse.chitietdonhangs">
+                        <td>
+                            <div class="product-info">
+                                <img [src]="item.sanpham.hinhthunho"  alt="Product Image" class="product-image" (click)="onProductClick(item.sanpham.ma)">
+                                <span class="product-name">{{ item.sanpham.ten }}</span>
+                            </div>
+                        </td>
+                        <td>{{ item.soluong }}</td>
+                        <td>{{ item.gia| currency:'VND':'symbol':'1.0-0' }}</td>
+                        <td>{{ item.thanhtien| currency:'VND':'symbol':'1.0-0'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-start mt-3">
+                <h4 class="header-text text-end">Tổng tiền: {{ orderResponse.tongtien|currency:'VND':'symbol':'1.0-0' }}</h4>
+            </div>            
+        </div>
+    </div>
+</div>

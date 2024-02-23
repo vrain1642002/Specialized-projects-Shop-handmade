@@ -1,0 +1,137 @@
+.container {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+    width:  100vw; 
+    height: 100vh;
+    margin-bottom: 20px;
+       
+}
+
+.intro-section {
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    border-collapse: separate;
+    border: 1px solid red;
+    border-spacing: 0;
+    background-color: whitesmoke;
+}
+
+th,
+td {
+    border: 1px solid red;
+    padding: 10px;
+    text-align: center;
+  
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.product-name {
+    color: black;
+    margin-right: 10px;
+}
+
+.btn-gradient {
+    background: red;
+    color: white;
+    border-radius: 30px;
+    width: 200px;
+
+}
+
+.btn-dat {
+    background: orangered;
+    color: white;
+    border-radius: 30px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    /* Màu chữ trắng */
+}
+
+.btn.succed {
+    background-color: #28a745;
+    /* Màu xanh lá cây */
+}
+
+.btn.primary {
+    background-color: #007bff;
+    /* Màu xanh dương */
+}
+
+.btn.clear {
+    background-color: #dc3545;
+    /* Màu đỏ */
+}
+.btn-group {
+    margin-top: 10px; /* Khoảng cách giữa các button */
+}
+.text-start{
+    font-size: 20px;
+}
+
+
+
+/* Kiểu cho hình ảnh sản phẩm */
+.product-image {
+    max-width: 100px; /* Điều chỉnh kích thước tối đa của hình ảnh */
+    max-height:100px;
+}
+
+.price1{
+    font-size: 30px;
+    color: red;
+}
+
+.header-text {
+    color: red;
+}
+
+//button tang giam so luong
+.border-wrapper {
+    display: flex;
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+.border-wrapper button,
+.border-wrapper input {
+    margin: 0 5px; /* Khoảng cách giữa các phần tử */
+}
+
+.product-quantity input {
+  
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    width: 40px;
+    margin: 0 10px;
+  }

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Thêm sản phẩm</h3>
+        <form (ngSubmit)="insertProduct()" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Nhập tên sản phẩm:</label>
+            <input type="text" id="name" [(ngModel)]="insertProductDTO.ten" name="name" class="form-control" required>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="price">Giá</label>
+            <input type="text" id="price" [(ngModel)]="insertProductDTO.gia" name="price" class="form-control col-md-3" required>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="description">Mô tả</label>
+            <textarea id="description" [(ngModel)]="insertProductDTO.mota" name="description" class="form-control" required></textarea>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="category">Chọn Danh mục sản phẩm</label>
+            <select id="category" [(ngModel)]="insertProductDTO.Ma_Danhmucsanpham" name="category" class="form-control" required>
+              <!-- Display list of categories -->
+              <option *ngFor="let category of categories" [value]="category.ma">{{ category.ten }}</option>
+            </select>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="images">Chọn Hình ( tối đa 4 hình ):</label>
+            <input type="file" id="images" name="images" multiple (change)="onFileChange($event)" accept="image/*">
+          </div>
+  
+          <button type="submit" class="btn btn-primary">Insert</button>
+        </form>
+      </div>
+    </div>
+  </div>

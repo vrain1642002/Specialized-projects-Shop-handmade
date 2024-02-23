@@ -1,0 +1,63 @@
+<div *ngIf="product">      
+    <!-- Form cập nhật thông tin sản phẩm -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3>Cập nhật sản phẩm</h3>
+          <form (ngSubmit)="updateProduct()">
+            <div class="form-group">
+              <label for="name">Tên</label>
+              <input type="text" id="name" [(ngModel)]="updatedProduct.ten" name="name" class="form-control" required>
+            </div>
+      
+            <div class="form-group mb-3">
+              <label for="price">Giá</label>
+              <input type="text" id="price" [(ngModel)]="updatedProduct.gia" 
+                name="price" class="form-control col-md-3" required>
+            </div>
+      
+            <div class="form-group mb-3">
+              <label for="description">mô tả</label>
+              <textarea id="description" [(ngModel)]="updatedProduct.mota" name="description" class="form-control" required></textarea>
+            </div>
+      
+            <div class="form-group mb-3">
+              <label for="category">Chọn Danh mục sản phẩm</label>
+              <select id="category" [(ngModel)]="updatedProduct.madanhmucsanpham" name="category" class="form-control" required>
+                <!-- Hiển thị danh sách các category -->
+                <option *ngFor="let category of categories" [value]="category.ma">{{ category.ten }}</option>
+              </select>
+            </div>
+            <h4>Thumbnail sản phẩm lấy ,click vào hình sản phẩm để chọn</h4>
+            <div class="square-image">
+                          
+              <img [src]="urlproduct" class="product-image" alt="Chưa có Thumbnail ">
+
+          </div>
+          <h5>Hình sản phẩm,nhấn x để xóa</h5>
+            <div class="row mb-3">
+              <div class="thumbnail-container">
+                <div *ngFor="let productImage of product?.sanpham_hinhs; let i = index" 
+                    class="thumbnail-item" 
+                    [ngClass]="{'active': i === currentImageIndex}"
+                    (click)="thumbnailClick(i,productImage)">
+                  <img [src]="productImage.diachihinh" class="thumbnail-image" 
+                    alt="Thumbnail Image">
+                  <button type="button" class="btn btn-sm remove-image" 
+                    (click)="deleteImage(productImage)">
+                    <i class="fa fa-times-circle text-danger"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="images">Thêm hình  (Tối đa 4):</label>
+              <input type="file" id="images" name="images" 
+                multiple (change)="onFileChange($event)" accept="image/*">
+            </div>            
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

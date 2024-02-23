@@ -1,0 +1,25 @@
+
+<div>      
+  
+    <!-- Form cập nhật thông tin sản phẩm -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+         
+          <h3>Cập nhật danh mục sản phẩm</h3>
+          <form (ngSubmit)="updateCategory()">
+            <div class="form-group mb-3">
+              <label for="name">Tên</label>
+              <input type="text" id="ten" 
+                [(ngModel)]="updatedCategory.ten" 
+                name="ten" class="form-control" required>
+            </div>                  
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+            
+          </form>
+      
+        </div>
+      
+      </div>
+    </div>
+  </div>

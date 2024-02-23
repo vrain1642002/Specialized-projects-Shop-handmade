@@ -1,0 +1,35 @@
+<div class="container">
+    <h1>Quản lý danh mục</h1>        
+    <div class="row">
+      <div class="col-md-8 ">
+        <button class="btn btn-success" (click)="insertCategory()">Thêm danh mục mới</button>
+      </div>      
+    </div>
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th>Mã</th>
+          <th>Tên</th>          
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Use Angular's *ngFor directive to loop through categorys array -->
+        <tr *ngFor="let category of categories">
+          <td>{{ category.ma }}</td>
+          <td>{{ category.ten }}</td>          
+          <td>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-primary" 
+                  (click)="updateCategory(category.ma)">
+               Cập nhật
+              </button>
+              <button class="btn btn-danger" 
+                (click)="deleteCategory(category)">Xóa
+              </button>            
+              </div>
+          </td>          
+        </tr>
+      </tbody>
+    </table>    
+  </div>

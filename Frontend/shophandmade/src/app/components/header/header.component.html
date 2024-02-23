@@ -1,0 +1,37 @@
+<!-- Phan header cua web,duoc tai su dung, goi ham toggleResponsiveClass() -->
+<header>
+    <div class="topnav" id="myTopnav">
+        <a class="navbar-brand">
+            <img routerLink="/" width="30px" height="30px"
+            src="\assets\img\facion.png" 
+                alt="Logo" 
+                class="Logo">
+        </a>
+        <a class="nav-link "  routerLink="/">Trang chủ</a>
+        <a class="nav-link "  routerLink="/products" >Sản phẩm</a>
+        <a class="nav-link"   routerLink="/cart">
+            <i class="fas fa-shopping-cart icon"></i>
+            Giỏ hàng
+        </a>
+        <a class="nav-link"  routerLink="/love">
+            <i class="fas fa-heart icon"></i>
+           
+            Sản phẩm yêu thích
+        </a>
+        <a class="nav-link"  routerLink="/find">
+            <i class="fa-solid fa-magnifying-glass"></i>
+           
+           Tra cứu đơn hàng
+        </a>
+       
+
+        <ng-container *ngIf="userResponse">
+            <a class="nav-link" routerLink="/user-profile">Tài khoản của tôi</a>
+            <a class="nav-link" (click)="logout()">Đăng xuất</a>
+          </ng-container>
+        <ng-container *ngIf="!userResponse">
+            <a class="nav-link" routerLink="/login">Đăng nhập</a>
+          </ng-container>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" (click)="toggleResponsiveClass()">&#9776;</a>
+    </div>
+  </header>
