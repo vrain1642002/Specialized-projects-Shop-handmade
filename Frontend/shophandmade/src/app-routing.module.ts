@@ -1,4 +1,4 @@
-import { Router, RouterModule, Routes } from "@angular/router";
+import { Router, RouterModule, Routes,ExtraOptions } from "@angular/router";
 import { HomeComponent } from "./app/components/home/home.component";
 import { LoginComponent } from "./app/components/login/login.component";
 
@@ -30,9 +30,12 @@ const routes:Routes=[
     {path:'user-profile', component:UserProfileComponent},
     {path:'admin', component:AdminComponent},
 ];
+const routerOptions: ExtraOptions = {
+    onSameUrlNavigation: 'reload', // Cài đặt cho phép reload khi trang cố gắng tải lại
+  };
 
 @NgModule({
-    imports:[RouterModule.forRoot(routes)],
+    imports:[RouterModule.forRoot(routes,routerOptions)],
     exports:[RouterModule]
 })
 export class AppRoutingModule{}
