@@ -31,7 +31,7 @@ public class Donhang {
 
 
     @Column(name = "SDT_Nguoinhan",nullable = false, length = 10)
-    private String sdt_Nguoinhan;
+    private String Sdt_Nguoinhan;
 
 
     @Column(name = "Ghichu", length = 100)

@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.context.config.ConfigDataLocationNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -50,7 +52,7 @@ public class DonhangService implements IDonhangService{
 //        donhangRepository.save(donhang);
         Donhang donhang=Donhang.builder()
                 .Hoten_Nguoinhan(donhangDTO.getHotenNguoinhan())
-                .sdt_Nguoinhan(donhangDTO.getSDTNguoinhan())
+                .Sdt_Nguoinhan(donhangDTO.getSDTNguoinhan())
                  .Ghichu(donhangDTO.getGhichu())
                  .Tongtien(donhangDTO.getTongtien())
                 .Phuongthucvanchuyen(donhangDTO.getPhuongthucvanchuyen())
@@ -59,7 +61,7 @@ public class DonhangService implements IDonhangService{
                 .build();
         donhang.setNguoidung(nguoidung);
         donhang.setNgaydat( LocalDate.now());
-        donhang.setTrangthaiDH(TrangthaiDH.Dangchuanbi);
+        donhang.setTrangthaiDH(TrangthaiDH.Dangxuly);
          donhang.setTrangthai(true);
          donhangRepository.save(donhang);
 
@@ -139,4 +141,11 @@ public class DonhangService implements IDonhangService{
         }
 
     }
+
+    @Override
+    public Page<Donhang> getOrdersByKeyword(String keyword, Pageable pageable) {
+        return donhangRepository.findByKeyword(keyword, pageable);
+    }
+
+
 }

@@ -4,8 +4,12 @@ import com.project.shophandmade.dtos.*;
 import com.project.shophandmade.dtos.DanhmucsanphamDTO;
 import com.project.shophandmade.models.Danhmucsanpham;
 import com.project.shophandmade.repositories.DanhmucsanphamRepository;
+import com.project.shophandmade.responses.DangnhapResponse;
+import com.project.shophandmade.responses.DanhmucsanphamResponse;
+import com.project.shophandmade.responses.UpdateCategoryResponse;
 import com.project.shophandmade.services.DanhmucsanphamService;
 import com.project.shophandmade.services.IDanhmucsanphamService;
+import com.project.shophandmade.utils.MessageKeys;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -14,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 //ket hop giua controller danh dau class xu ly request va tra ket qua thong qua cac api xu ly nhu get,post,put,delete
 //truyen cac json object qua thanh request object
@@ -27,19 +32,24 @@ public class DanhmucsanphamController {
 
       @PostMapping("")
     //Tham so truyen vao la 1 object=>Data Transfre object= Request Object
-    public ResponseEntity<?> taoDanhmucsanpham(
+    public ResponseEntity<DanhmucsanphamResponse> taoDanhmucsanpham(
             @Valid @RequestBody DanhmucsanphamDTO danhmucsanphamDTO,
             BindingResult result) {
-        if(result.hasErrors()) {
-            //lay danh sach loi chuyen dang string bang stream de bao loi
-            List<String> errorMessages = result.getFieldErrors()
-                    .stream()
-                    .map(FieldError::getDefaultMessage)
-                    .toList();
-            return ResponseEntity.badRequest().body(errorMessages);
-        }
-        danhmucsanphamService.taoDanhmucsanpham(danhmucsanphamDTO);
-        return ResponseEntity.ok("tao thanh cong"+danhmucsanphamDTO);
+//
+          DanhmucsanphamResponse danhmucsanphamResponse=new DanhmucsanphamResponse();
+          try {
+
+              Danhmucsanpham danhmucsanpham = danhmucsanphamService.taoDanhmucsanpham(danhmucsanphamDTO);
+              danhmucsanphamResponse.setDanhmucsanpham(danhmucsanpham);
+              // Trả về token trong response
+              return ResponseEntity.ok(danhmucsanphamResponse);
+
+                            } catch (Exception e) {
+              danhmucsanphamResponse.setMessage(e.getMessage());
+              return ResponseEntity.badRequest().body(danhmucsanphamResponse);
+
+
+          }
     }
     @GetMapping("")  //http://localhost:8088/api/v1/Danhmucsanpham
     public ResponseEntity<List<Danhmucsanpham>>  LayDanhmucsanphams(
@@ -52,14 +62,24 @@ public class DanhmucsanphamController {
     }
 
     @PutMapping("/{Ma}")
-    public ResponseEntity<String> suaDanhmucsanpham(@PathVariable Long Ma, @Valid @RequestBody DanhmucsanphamDTO danhmucsanphamDTO){
+    public ResponseEntity<UpdateCategoryResponse> suaDanhmucsanpham(@PathVariable Long Ma, @Valid @RequestBody DanhmucsanphamDTO danhmucsanphamDTO){
+        UpdateCategoryResponse updateCategoryResponse = new UpdateCategoryResponse();
         danhmucsanphamService.capnhatDanhmucsanpham(Ma,danhmucsanphamDTO);
-        return ResponseEntity.ok("Cap nhat danh muc san pham voi ma ="+Ma +" thanh cong");
+
+        updateCategoryResponse.setMessage("Cập nhật thành công");
+        return ResponseEntity.ok(updateCategoryResponse);
     }
+
+
     @DeleteMapping("/{Ma}")
-    public ResponseEntity<String> xoaDanhmucsanpham(@PathVariable Long Ma){
-        danhmucsanphamService.xoaDanhmucsanpham(Ma);
-        return ResponseEntity.ok("Xoa danh muc san pham voi ma="+Ma+" thanh cong");
+    public ResponseEntity<?> xoaDanhmucsanpham(@PathVariable Long Ma){
+          try {
+              danhmucsanphamService.xoaDanhmucsanpham(Ma);
+              return ResponseEntity.ok(String.format(""));
+          }catch (Exception e) {
+              return ResponseEntity.badRequest().body(e.getMessage());
+          }
+
     }
 
 

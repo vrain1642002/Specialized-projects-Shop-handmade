@@ -42,13 +42,13 @@ public class NguoidungService implements INguoidungService {
         }
 
         Vaitro vaitro =vaitroRepository.findById(nguoidungDTO.getMaVaitro())
-                .orElseThrow(() -> new KhongtimthaydulieuException("Khong tim thay vai tro"));
+                .orElseThrow(() -> new KhongtimthaydulieuException("Không tìm thấy vai trò"));
         if(vaitro.getTen().toUpperCase().equals(Vaitro.ADMIN))
-            throw  new NganquyenException("Khong the dang ki tai khoan ADMIN");
+            throw  new NganquyenException(" Không thể̀ đăng kí admin");
 
             if(!nguoidungDTO.getMatkhau().equals(nguoidungDTO.getNhaplaimatkhau()))
             {
-                throw  new KhongtimthaydulieuException("Mat khau va nhap lai mat khau khongdung");
+                throw  new KhongtimthaydulieuException("Mật khẩu và nhập lại mật khẩu không đúng ");
 
             }
         //convert nguoidung dto => user
@@ -75,11 +75,11 @@ public class NguoidungService implements INguoidungService {
     {
         Optional<Nguoidung> optionalNguoidung=nguoidungRepository.findBySdt(SDT);
         if (optionalNguoidung.isEmpty())
-            throw  new KhongtimthaydulieuException("Khong tim thay tai khoan");
+            throw  new KhongtimthaydulieuException("Không tìm thấy tài khoản");
         Nguoidung nguoidung=optionalNguoidung.get();
         //kiem tra mat khau
         if(!passwordEncoder.matches(Matkhau,nguoidung.getPassword()))
-            throw  new BadCredentialsException("Sai so dien thoai hoac mat khau");
+            throw  new BadCredentialsException("Nhập sai thông tin");
         //cap quyen bang spring secutity
         UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(SDT,Matkhau);
           authenticationManager.authenticate(authenticationToken);
@@ -104,7 +104,7 @@ public class NguoidungService implements INguoidungService {
         // Find the existing user by userId
 
         Nguoidung nguoidung=nguoidungRepository.findById(userId)
-                .orElseThrow(() -> new KhongtimthaydulieuException("khong tim thay nguoi dung"));
+                .orElseThrow(() -> new KhongtimthaydulieuException("Không tìm thấy người dùng"));
         // Check if the phone number is being changed and if it already exists for another user
 
 
@@ -123,7 +123,7 @@ public class NguoidungService implements INguoidungService {
         if(capnhatnguoidungDTOO.getMatkhau()!=null && capnhatnguoidungDTOO.getNhaplaimatkhau()!=null) {
             if(capnhatnguoidungDTOO.getMatkhau().equals(capnhatnguoidungDTOO.getNhaplaimatkhau())==false)
             {
-                throw  new GiatrikhonghopleException("Mat khau va nhap lai mat khau khongdung");
+                throw  new GiatrikhonghopleException("Mật khẩu và nhập lại mật khẩu không đúng ");
 
             }
             String newPassword = capnhatnguoidungDTOO.getMatkhau();

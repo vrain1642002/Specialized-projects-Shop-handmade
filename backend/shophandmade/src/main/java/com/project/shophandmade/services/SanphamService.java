@@ -17,9 +17,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +36,7 @@ public class SanphamService implements ISanphamService {
     private final SanphamRepository sanphamRepository;
     private final DanhmucsanphamRepository danhmucsanphamRepository;
     private final Sanpham_hinhRepository sanpham_hinhRepository;
-
+        private static String UPLOADS_FOLDER = "uploads";
 
     @Override
     public Sanpham taoSanpham(SanphamDTO sanphamDTO) throws Exception {
@@ -35,7 +44,7 @@ public class SanphamService implements ISanphamService {
                 .findById(sanphamDTO.getMadanhmucsanpham())
                 .orElseThrow(() ->
                         new KhongtimthaydulieuException(
-                                "Khong tim thay  danh muc san pham co ma = "+sanphamDTO.getMadanhmucsanpham()));
+                                "Không tìm thấy danh mục sản phẩm với mã "+sanphamDTO.getMadanhmucsanpham()));
 
         Sanpham sanphammoi = Sanpham.builder()
                 .ten(sanphamDTO.getTen())
@@ -52,7 +61,7 @@ public class SanphamService implements ISanphamService {
     public Sanpham laySanpham(long Ma) throws Exception {
         return sanphamRepository.findById(Ma).
                 orElseThrow(()-> new KhongtimthaydulieuException(
-                        "Khong tim thay san pham voi ma =" +Ma));
+                        "Không tìm thấy sản phẩm với mã " +Ma));
 
     }
 
@@ -74,7 +83,7 @@ public class SanphamService implements ISanphamService {
                 .findById(sanphamDTO.getMadanhmucsanpham())
                 .orElseThrow(() ->
                         new KhongtimthaydulieuException(
-                                "Khong tim thay danh muc san pham co ma = "+sanphamDTO.getMadanhmucsanpham()));
+                                "KKhông tìm thấy sản phẩm với mã "+sanphamDTO.getMadanhmucsanpham()));
         sanpham.setTen(sanphamDTO.getTen());
         sanpham.setDanhmucsanpham(Danhmucsanpham);
         sanpham.setGia(sanphamDTO.getGia());
@@ -104,7 +113,7 @@ public class SanphamService implements ISanphamService {
                     .findById(Ma)
                     .orElseThrow(() ->
                             new KhongtimthaydulieuException(
-                                    "khong tim thay san pham voi ma "+sanpham_hinhDTO.getMa_Sanpham()));
+                                    "Không tìm thấy danh mục sản phẩm với mã  "+sanpham_hinhDTO.getMa_Sanpham()));
            Sanpham_hinh newSanpham_hinh = Sanpham_hinh.builder()
                     .sanpham(Sanpham)
                     .Diachihinh(sanpham_hinhDTO.getDiachihinh())
@@ -114,7 +123,7 @@ public class SanphamService implements ISanphamService {
             //Ko cho insert quá 4 ảnh cho 1 sản phẩm
             int size = sanpham_hinhRepository.findSanpham_hinhBySanpham(Sanpham).size();
             if(size >= Sanpham_hinh.soluongMax) {
-                throw new GiatrikhonghopleException("So luong hinh <="+ Sanpham_hinh.soluongMax);
+                throw new GiatrikhonghopleException("Số lượng hình <="+ Sanpham_hinh.soluongMax);
             }
              Sanpham.setHinhthunho(newSanpham_hinh.getDiachihinh());
               sanphamRepository.save(Sanpham);
@@ -125,5 +134,43 @@ public class SanphamService implements ISanphamService {
     public List<Sanpham> findProductsByIds(List<Long> productIds) {
         return sanphamRepository.findProductsByIds(productIds);
     }
+    @Override
+    public void deleteFile(String filename) throws IOException {
+        // Đường dẫn đến thư mục chứa file
+        java.nio.file.Path uploadDir = Paths.get(UPLOADS_FOLDER);
+        // Đường dẫn đầy đủ đến file cần xóa
+        java.nio.file.Path filePath = uploadDir.resolve(filename);
 
+        // Kiểm tra xem file tồn tại hay không
+        if (Files.exists(filePath)) {
+            // Xóa file
+            Files.delete(filePath);
+        } else {
+            throw new FileNotFoundException("File not found: " + filename);
+        }
+    }
+    private boolean isImageFile(MultipartFile file) {
+        String contentType = file.getContentType();
+        return contentType != null && contentType.startsWith("image/");
+    }
+    @Override
+    public String storeFile(MultipartFile file) throws IOException {
+        if (!isImageFile(file) || file.getOriginalFilename() == null) {
+            throw new IOException("Invalid image format");
+        }
+        String filename = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+        // Thêm UUID vào trước tên file để đảm bảo tên file là duy nhất
+        String uniqueFilename = UUID.randomUUID().toString() + "_" + filename;
+        // Đường dẫn đến thư mục mà bạn muốn lưu file
+        java.nio.file.Path uploadDir = Paths.get(UPLOADS_FOLDER);
+        // Kiểm tra và tạo thư mục nếu nó không tồn tại
+        if (!Files.exists(uploadDir)) {
+            Files.createDirectories(uploadDir);
+        }
+        // Đường dẫn đầy đủ đến file
+        java.nio.file.Path destination = Paths.get(uploadDir.toString(), uniqueFilename);
+        // Sao chép file vào thư mục đích
+        Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
+        return uniqueFilename;
+    }
 }

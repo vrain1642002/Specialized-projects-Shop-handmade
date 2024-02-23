@@ -20,5 +20,5 @@ public class Danhmucsanpham {
 
     //anh xa cot
     @Column(name = "Ten", nullable = false)
-    private String Ten;
+    private String ten;
 }

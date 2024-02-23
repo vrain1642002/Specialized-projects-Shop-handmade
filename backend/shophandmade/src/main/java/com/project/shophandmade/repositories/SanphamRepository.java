@@ -1,6 +1,7 @@
 package com.project.shophandmade.repositories;
 
 
+import com.project.shophandmade.models.Nguoidung;
 import com.project.shophandmade.models.Sanpham;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.*;
@@ -8,12 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SanphamRepository extends JpaRepository<Sanpham, Long> {
 
   boolean existsSanphamByTen(String Ten);
 
-    Page<Sanpham> findAll(Pageable pageable);//phân trang danh sach
+
+
+  Page<Sanpham> findAll(Pageable pageable);//phân trang danh sach
 
   @Query(value = "SELECT * FROM sanpham " +
           "WHERE (:Ma IS NULL OR :Ma = 0 OR Ma_Danhmucsanpham = :Ma) " +

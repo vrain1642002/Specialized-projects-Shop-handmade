@@ -23,7 +23,7 @@ public class Sanpham extends Lopcha {
     private Float gia;
 
     //tro den file anh upload
-    @Column(name = "Hinhthunho", length = 100)
+
     private String hinhthunho;
 
     @Column(name = "Mota")

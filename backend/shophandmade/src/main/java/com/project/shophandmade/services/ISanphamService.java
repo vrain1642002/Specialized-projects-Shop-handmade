@@ -8,7 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import com.project.shophandmade.models.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ISanphamService {
@@ -23,4 +25,7 @@ public interface ISanphamService {
             Sanpham_hinhDTO sanpham_hinhDTO) throws Exception;
 
     List<Sanpham> findProductsByIds(@Param("productIds") List<Long> productIds);
+    String storeFile(MultipartFile file) throws IOException;
+    void deleteFile(String filename) throws IOException;
+
 }

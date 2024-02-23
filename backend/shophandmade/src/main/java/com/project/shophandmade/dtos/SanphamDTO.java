@@ -17,8 +17,7 @@ import java.util.List;
 @Builder
 public class SanphamDTO {
     @NotBlank(message = "Ten khong duoc de trong")
-    @Size(min = 3, max = 30, message = "Ten phai dai hon 3 va nho hon 30 ki tu")
-    private String Ten;
+      private String Ten;
 
     @Min(value = 0, message = "Gia phai lon hon 0")
     @Max(value = 10000000, message = "Gia phai nho hon hoac bang 10,000,000")

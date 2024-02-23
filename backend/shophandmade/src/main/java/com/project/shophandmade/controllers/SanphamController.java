@@ -194,11 +194,11 @@ public class SanphamController {
         }
     }
     @DeleteMapping("/{Ma}")
-    public ResponseEntity<String> xoaSanpham(@PathVariable long Ma) {
+    public ResponseEntity<?> xoaSanpham(@PathVariable long Ma) {
         try {
 
             sanphamService.xoaSanpham(Ma);
-            return ResponseEntity.ok(String.format("San pham co ma = %d da xoa thanh cong", Ma));
+            return ResponseEntity.ok(String.format(""));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

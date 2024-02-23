@@ -1,5 +1,7 @@
 package com.project.shophandmade.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +20,7 @@ public class Sanpham_hinh {
 
     @ManyToOne
     @JoinColumn(name = "Ma_Sanpham")
+    @JsonIgnore
     private Sanpham sanpham;
 
     @Column(name = "Diachihinh", length = 100)

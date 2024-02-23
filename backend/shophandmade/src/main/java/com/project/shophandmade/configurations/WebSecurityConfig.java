@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +26,7 @@ import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableMethodSecurity
+
 
 
 @RequiredArgsConstructor
@@ -80,6 +82,9 @@ public class WebSecurityConfig {
 
                             .requestMatchers(GET,
                                     String.format("%s/donhangs/**", apiPrefix)).permitAll()
+
+                            .requestMatchers(GET,
+                                    String.format("%s/donhangs/get-orders-by-keyword", apiPrefix)).hasAnyRole(Vaitro.ADMIN)
 
                             .requestMatchers(POST,
                                     String.format("%s/donhangs/**", apiPrefix)).hasAnyRole(Vaitro.KHACHHANG,Vaitro.ADMIN)

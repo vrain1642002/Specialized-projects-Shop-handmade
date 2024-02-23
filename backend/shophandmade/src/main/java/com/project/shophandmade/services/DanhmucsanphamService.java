@@ -2,12 +2,17 @@ package com.project.shophandmade.services;
 
 
 import com.project.shophandmade.dtos.DanhmucsanphamDTO;
+import com.project.shophandmade.exceptions.KhongtimthaydulieuException;
 import com.project.shophandmade.models.Danhmucsanpham;
+import com.project.shophandmade.models.Sanpham;
 import com.project.shophandmade.repositories.DanhmucsanphamRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 //danh dau la class xu ly tang luan li,logic
 @Service
@@ -18,11 +23,18 @@ public class DanhmucsanphamService implements IDanhmucsanphamService {
 
 
     @Override
-    public Danhmucsanpham taoDanhmucsanpham(DanhmucsanphamDTO danhmucsanphamDTO) {
+    public Danhmucsanpham taoDanhmucsanpham(DanhmucsanphamDTO danhmucsanphamDTO) throws Exception{
+        String Ten= danhmucsanphamDTO.getTen();
+        if(danhmucsanphamRepository.existsByTen(Ten)) {
+
+            throw  new KhongtimthaydulieuException("Đã tồn tại tên danh mục");
+
+
+        }
         //builder la ham khoi tao tung thanh phan tung thuoc tinh 1
         Danhmucsanpham newDanhmucsanpham = Danhmucsanpham
                 .builder()
-                .Ten(danhmucsanphamDTO.getTen())
+                .ten(danhmucsanphamDTO.getTen())
                 .build();
         return danhmucsanphamRepository.save(newDanhmucsanpham);
     }
@@ -51,8 +63,15 @@ public class DanhmucsanphamService implements IDanhmucsanphamService {
     }
 
     @Override
-    public void xoaDanhmucsanpham(long Ma) {
-            danhmucsanphamRepository.deleteById(Ma);
+    public void xoaDanhmucsanpham(long Ma) throws Exception {
+       int sl=danhmucsanphamRepository.countProductsByMaDanhMuc(Ma);
+        if(sl>0) {
+
+            throw  new KhongtimthaydulieuException("Không thể xóa danh mục sản phẩm vì tồn tại sản phẩm");
+
+
+        }
+        danhmucsanphamRepository.deleteById(Ma);
     }
 
 }

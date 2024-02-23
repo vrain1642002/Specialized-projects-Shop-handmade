@@ -12,7 +12,9 @@ public interface NguoidungRepository extends JpaRepository<Nguoidung, Long> {
     boolean existsBySdt(String SDT);
     //Doi tuong Optional kiem tra do tuong co empty khong
   Optional<Nguoidung> findBySdt(String SDT);
-   //SELECT * FROM Nguoidung WHERE SDT=?
+
+
+
 
 
 }
