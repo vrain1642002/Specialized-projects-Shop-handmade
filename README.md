@@ -16,7 +16,7 @@ Tổng quan project:
 
 #Hướng dẫn sử dụng:
 
-Có thể truy cập trực tiếp đường này  để sử dụng,reponse tương thích trên cả mobile và pc:https://frontend-production-9a0c.up.railway.app/
+Có thể truy cập trực tiếp đường này  để sử dụng,reponse tương thích trên cả mobile và pc:https://frontendshop-production.up.railway.app/
 
 -Về phía khách hàng:
 +Tầi khoản có sẵn :0866715111 %% kK123456@
